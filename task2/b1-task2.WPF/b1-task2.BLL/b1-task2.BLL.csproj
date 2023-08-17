@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>b1_task2.BLL</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IronXL.Excel" Version="2023.8.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\b1-task2.DAL\b1-task2.DAL.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,1 @@
+delete from  [tase].[dbo].[random_date]

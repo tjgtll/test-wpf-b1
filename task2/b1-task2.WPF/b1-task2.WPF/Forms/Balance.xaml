@@ -1,0 +1,93 @@
+﻿<Window x:Class="b1_task2.WPF.Forms.Balance"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:b1_task2.WPF.Forms"
+        xmlns:models="clr-namespace:b1_task2.WPF.Models"
+        mc:Ignorable="d"
+        Title="Balance" Height="450" Width="1050">
+    <Window.Resources>
+        <models:BankAccountNumberConverter  x:Key="BankAccountNumberConverter"/>
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="DataGridCell">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid  Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="975" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" x:Name="balanceSheetNameTextBlock"/>
+            <TextBlock FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="1">
+                Оборотная ведомость по балансовым
+            </TextBlock>
+            <TextBlock FontSize="10" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="2" x:Name="balanceSheetDateTextBlock"/>
+            <TextBlock FontSize="10" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="3">
+                по банку
+            </TextBlock>
+            <TextBlock Grid.Row="4">
+
+            </TextBlock>
+        </Grid>
+        <Grid  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                <TextBlock>
+                    Б/сч
+                </TextBlock>
+            </Label>
+            <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2">ВХОДЯЩЕЕ САЛЬДО</Label>
+            <Label Grid.Column="1" Grid.Row="1">Актив</Label>
+            <Label Grid.Column="2" Grid.Row="1">Пассив</Label>
+            <Label Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2">ОБОРОТЫ</Label>
+            <Label Grid.Column="3" Grid.Row="1">Дебет</Label>
+            <Label Grid.Column="4" Grid.Row="1">Кредит</Label>
+            <Label Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2">ИСХОДЯЩЕЕ САЛЬДО</Label>
+            <Label Grid.Column="5" Grid.Row="1">Актив</Label>
+            <Label Grid.Column="6" Grid.Row="1">Пассив</Label>
+        </Grid>
+        <DataGrid Name="dataGrid" AutoGenerateColumns="False"  
+                  HeadersVisibility="None" Grid.Row="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="75"  Header="Б/сч" Binding="{Binding BankAccountNumber, Converter={StaticResource BankAccountNumberConverter}}" />
+                <DataGridTextColumn Width="150" Header="ВХОДЯЩЕЕ САЛЬДО Актив" Binding="{Binding OpeningBalanceActive, StringFormat=F2}" />
+                <DataGridTextColumn Width="150" Header="ВХОДЯЩЕЕ САЛЬДО Пассив" Binding="{Binding OpeningBalancePassive, StringFormat=F2}" />
+                <DataGridTextColumn Width="150" Header="ОБОРОТЫ Дебет" Binding="{Binding TurnoverDebit, StringFormat=F2}"/>
+                <DataGridTextColumn Width="150" Header="ОБОРОТЫ Кредит" Binding="{Binding TurnoverCredit, StringFormat=F2}" />
+                <DataGridTextColumn Width="150" Header="ИСХОДЯЩЕЕ САЛЬДО Актив" Binding="{Binding СlosingBalanceActive, StringFormat=F2}" />
+                <DataGridTextColumn Width="150" Header="ИСХОДЯЩЕЕ САЛЬДО Пассив" Binding="{Binding СlosingBalancePassive, StringFormat=F2}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
